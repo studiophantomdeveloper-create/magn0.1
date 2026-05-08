@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Magn Synthesizer</title>
+    <link rel="stylesheet" href="/src/style.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <div id="app">
+      <div class="synth-container">
+        
+        <div class="synth-mega-grid">
+          
+          <header class="synth-header">
+            <h1>Magn</h1>
+            <div class="header-controls">
+              <div class="master-vol">
+                <label for="masterVol">VOL</label>
+                <input type="range" id="masterVol" min="0" max="1" step="0.01" value="0.5">
+              </div>
+              <div class="status-indicator" id="status-indicator"></div>
+              <button id="start-btn" class="power-btn">POWER</button>
+            </div>
+          </header>
+
+          <!-- Row 1 -->
+          <div class="panel-section display-panel">
+            <div class="config-row">
+              <div class="combobox-group">
+                <label for="displayCombo">Display</label>
+                <select id="displayCombo">
+                  <option value="1">Waveform</option>
+                  <option value="2">Spectroscope</option>
+                  <option value="3">Spectrogram</option>
+                  <option value="4">Lissajous</option>
+                </select>
+              </div>
+              <div class="combobox-group">
+                <label for="waveshape">Shape</label>
+                <select id="waveshape">
+                  <option value="1">Seno</option>
+                  <option value="2" selected>Sierra</option>
+                  <option value="3">Cuadrada</option>
+                  <option value="4">Triangular</option>
+                  <option value="5">Pulso</option>
+                </select>
+              </div>
+            </div>
+            <div class="display-box">
+              <canvas id="scopeCanvas"></canvas>
+            </div>
+          </div>
+
+          <div class="panel-section envelope-panel">
+            <h3>Envelope</h3>
+            <div class="sliders-row">
+              <div class="knob">
+                <input type="range" id="att" min="0" max="1" step="0.01" value="0.01" orient="vertical" />
+                <label for="att">A</label>
+                <span class="val-display" id="att-val">0.01</span>
+              </div>
+              <div class="knob">
+                <input type="range" id="dec" min="0" max="1" step="0.01" value="0.5" orient="vertical" />
+                <label for="dec">D</label>
+                <span class="val-display" id="dec-val">0.50</span>
+              </div>
+              <div class="knob">
+                <input type="range" id="sus" min="0" max="1" step="0.01" value="0.5" orient="vertical" />
+                <label for="sus">S</label>
+                <span class="val-display" id="sus-val">0.50</span>
+              </div>
+              <div class="knob">
+                <input type="range" id="rel" min="0" max="1" step="0.01" value="0.7" orient="vertical" />
+                <label for="rel">R</label>
+                <span class="val-display" id="rel-val">0.70</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel-section filter-panel">
+            <h3>Filter</h3>
+            <div class="sliders-row">
+              <div class="knob">
+                <input type="range" id="cutoff" min="0" max="22000" step="1" value="2000" orient="vertical" />
+                <label for="cutoff">Cut</label>
+                <span class="val-display" id="cutoff-val">2K</span>
+              </div>
+              <div class="knob">
+                <input type="range" id="res" min="0" max="1" step="0.01" value="0.7" orient="vertical" />
+                <label for="res">Res</label>
+                <span class="val-display" id="res-val">0.7</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Row 2 -->
+          <div class="keyboard-panel">
+            <div class="keyboard" id="keyboard"></div>
+          </div>
+
+          <div class="panel-section lfo-panel">
+            <h3>LFO</h3>
+            <div class="sliders-row">
+              <div class="knob">
+                <input type="range" id="LFOFreq" min="0.1" max="100" step="0.1" value="1" orient="vertical" />
+                <label for="LFOFreq">Rate</label>
+                <span class="val-display" id="LFOFreq-val">1.0</span>
+              </div>
+              <div class="knob">
+                <input type="range" id="amp" min="0" max="1" step="0.01" value="0.7" orient="vertical" />
+                <label for="amp">Amp</label>
+                <span class="val-display" id="amp-val">0.7</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+        
+        <footer class="synth-footer">
+          <button id="home-btn" class="home-icon-btn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+              <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </svg>
+          </button>
+          <p class="copyright">@ Grull Picture Web - Derechos Reservados - Juan Sanz</p>
+        </footer>
+
+      </div>
+    </div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
